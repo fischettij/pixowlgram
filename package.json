@@ -3,11 +3,6 @@
   "version": "1.0.0",
   "description": "Backend Developer Test",
   "main": "index.js",
-  "scripts": {
-    "start": "node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "eslint --ext .js ./ src/"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/fischettij/pixowlgram.git"
@@ -25,6 +20,17 @@
     "url": "https://github.com/fischettij/pixowlgram/issues"
   },
   "homepage": "https://github.com/fischettij/pixowlgram#readme",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint --ext .js ./ src/"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint"
+    }
+  },
+
   "dependencies": {
     "express": "^4.17.1",
     "express-routes": "^1.0.0"
@@ -32,6 +38,7 @@
   "devDependencies": {
     "eslint": "^7.14.0",
     "eslint-config-airbnb-base": "^14.2.1",
-    "eslint-plugin-import": "^2.22.1"
+    "eslint-plugin-import": "^2.22.1",
+    "husky": "^4.3.0"
   }
 }
