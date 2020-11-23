@@ -1,6 +1,11 @@
 const { check, validationResult } = require('express-validator');
-const { BAD_REQUEST } = require('http-status-codes').StatusCodes;
+const {
+  CREATED,
+  BAD_REQUEST,
+  UNAUTHORIZED,
+} = require('http-status-codes').StatusCodes;
 const bcrypt = require('bcrypt');
+const { generateAccessToken } = require('../lib/token');
 const { User } = require('../../db/models');
 
 // Private
@@ -24,13 +29,16 @@ const create = async (req, res) => {
 
   const user = await findUser(req.body.email);
   if (user) {
-    bcrypt.compare(req.body.password, user.password, (err, result) => {
-      if (result) {
-        // Valid password
-      } else {
-        // invalid password
-      }
-    });
+    const result = await bcrypt.compare(req.body.password, user.password);
+    if (result) {
+      const token = generateAccessToken({ email: req.body.email });
+      res.set('Authorization', `Bearer ${token}`);
+      res.status(CREATED).json({ created: true });
+    } else {
+      res.status(UNAUTHORIZED).json({
+        errors: ['Invalid email or password'],
+      });
+    }
   } else {
     // User not found
   }

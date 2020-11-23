@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const { printRoutes } = require('express-routes');
 const app = require('./src/server');
 
