@@ -1,6 +1,6 @@
 const { check, validationResult } = require('express-validator');
-const { OK, BAD_REQUEST } = require('http-status-codes').StatusCodes;
-// const { User }    = require('../../db/models')
+const { CREATED, BAD_REQUEST } = require('http-status-codes').StatusCodes;
+const { User } = require('../../db/models');
 
 const formValidations = [
   check('email', 'E-Mail is required').not().isEmpty(),
@@ -16,7 +16,13 @@ const create = async (req, res) => {
       errors: errors.array().map(e => e.msg),
     });
   }
-  return res.status(OK);
+
+  await User.create({
+    email: req.body.email,
+    password: req.body.password,
+  });
+
+  return res.status(CREATED).json({ created: true });
 };
 
 module.exports = { formValidations, create };

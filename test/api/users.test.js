@@ -1,4 +1,4 @@
-const { BAD_REQUEST } = require('http-status-codes').StatusCodes;
+const { CREATED, BAD_REQUEST } = require('http-status-codes').StatusCodes;
 const { request, app, clearDatabase } = require('../test-utils');
 
 describe('Create', () => {
@@ -14,5 +14,14 @@ describe('Create', () => {
       'E-Mail is required',
       'Password is required',
     ]);
+  });
+
+  test('should responde 201 when create a valid user', async () => {
+    const email = 'jon.snow@mail.com';
+    const password = 'nightWatch';
+    const res = await request(app).post('/users').send({ email, password });
+    expect(res.status).toBe(CREATED);
+    expect(res.body).toBeObject();
+    expect(res.body).toContainEntry(['created', true]);
   });
 });
