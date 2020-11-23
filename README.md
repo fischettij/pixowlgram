@@ -1,11 +1,14 @@
 # PixowlGram » NodeJS Backend
 
+![Lint & Test](https://github.com/fischettij/pixowlgram/workflows/Lint%20&%20Test/badge.svg?branch=release-candidate)
+
 ## TL;DR
 
 ```sh
 git clone https://github.com/fischettij/pixowlgram.git
 cd pixowlgram
 npm i
+npx sequelize db:migrate
 npm run start
 ```
 
@@ -22,4 +25,16 @@ cd pixowlgram
 
 ```sh
 npm i
+```
+
+### Run Migrations
+
+```sh
+npx sequelize db:migrate
+```
+
+### Start
+
+```sh
+npm run start
 ```
