@@ -4,7 +4,7 @@
     "node": true
   },
   "rules": {
-    "arrow-parens": ["error", "as-needed", { "requireForBlockBody": true }],
+    "arrow-parens": ["error", "always", { "requireForBlockBody": true }],
     "lines-between-class-members": [
       "error",
       "always",
