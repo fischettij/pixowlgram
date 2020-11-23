@@ -1,5 +1,5 @@
 const { printRoutes } = require('express-routes');
-const app             = require('./src/server');
+const app = require('./src/server');
 
 const port = process.env.SERVER_PORT || 9004;
 
