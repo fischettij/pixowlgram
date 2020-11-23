@@ -13,7 +13,7 @@ const create = async (req, res) => {
     return res.status(BAD_REQUEST).json({
       status: BAD_REQUEST,
       message: 'User not created',
-      errors: errors.array().map((e) => e.msg),
+      errors: errors.array().map(e => e.msg),
     });
   }
   return res.status(OK);
