@@ -5,6 +5,7 @@
   },
   "rules": {
     "arrow-parens": ["error", "always", { "requireForBlockBody": true }],
+    "arrow-body-style": ["error", "as-needed"],
     "lines-between-class-members": [
       "error",
       "always",
