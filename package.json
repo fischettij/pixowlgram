@@ -24,6 +24,7 @@
     "start": "node index.js",
     "dev": "nodemon index.js",
     "test": "jest",
+    "test:ci": "jest --verbose --coverage",
     "lint": "eslint --ext .js ./ src/"
   },
   "husky": {
