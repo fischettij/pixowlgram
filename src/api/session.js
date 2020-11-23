@@ -40,7 +40,9 @@ const create = async (req, res) => {
       });
     }
   } else {
-    // User not found
+    res.status(UNAUTHORIZED).json({
+      errors: ['Invalid email or password'],
+    });
   }
   return res;
 };
