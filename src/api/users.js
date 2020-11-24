@@ -4,7 +4,7 @@ const {
   BAD_REQUEST,
   INTERNAL_SERVER_ERROR,
 } = require('http-status-codes').StatusCodes;
-const bcrypt = require('bcrypt');
+const { encrypt } = require('../lib/token');
 const { User } = require('../../db/models');
 
 // Private
@@ -31,7 +31,7 @@ const create = async (req, res) => {
     });
   }
 
-  const hashedPassword = await bcrypt.hash(req.body.password, 10);
+  const hashedPassword = await encrypt(req.body.password);
   try {
     await User.create({
       email: req.body.email,
