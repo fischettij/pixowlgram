@@ -59,7 +59,7 @@ describe('Create', () => {
     expect(res.status).toBe(BAD_REQUEST);
     expect(res.body).toBeObject();
     expect(res.body).toContainEntry(['status', BAD_REQUEST]);
-    expect(res.body).toContainEntry(['message', 'Token not created']);
+    expect(res.body).toContainEntry(['message', 'Validation Errors']);
     expect(res.body.errors).toIncludeAllMembers([
       'E-Mail is required',
       'Password is required',

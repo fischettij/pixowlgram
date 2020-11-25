@@ -38,3 +38,12 @@ npx sequelize db:migrate
 ```sh
 npm run start
 ```
+
+### TODO
+
+- Build docker image
+- Token expires
+- Refresh token
+- Save images in storage service
+- Login with third party
+- CI: Github Actions + DigitalOcean

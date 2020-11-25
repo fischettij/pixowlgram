@@ -1,24 +1,14 @@
 const { check, validationResult } = require('express-validator');
 const {
-  CREATED,
   BAD_REQUEST,
+  CREATED,
   INTERNAL_SERVER_ERROR,
 } = require('http-status-codes').StatusCodes;
-const { encrypt } = require('../lib/token');
-const { User } = require('../../db/models');
+const { User, Post } = require('../../db/models');
 
-// Private
-const emailNotRegistered = async (value) => {
-  if (!value) return Promise.resolve();
-  const user = await User.count({ where: { email: value } });
-  return user > 0 ? Promise.reject() : Promise.resolve();
-};
-
-// Public
 const formValidations = [
-  check('email', 'E-Mail is required').not().isEmpty(),
-  check('password', 'Password is required').not().isEmpty(),
-  check('email', 'E-Mail address already exists').custom(emailNotRegistered),
+  check('description', 'Description is required').not().isEmpty(),
+  check('imageLocation', 'Image location is required').not().isEmpty(),
 ];
 
 const create = async (req, res) => {
@@ -30,14 +20,17 @@ const create = async (req, res) => {
       errors: errors.array().map((e) => e.msg),
     });
   }
-
-  const hashedPassword = await encrypt(req.body.password);
+  const user = await User.findOne({ where: { email: req.jwt.email } });
   try {
-    await User.create({
-      email: req.body.email,
-      password: hashedPassword,
+    const post = await Post.create({
+      userId: user.id,
+      description: req.body.description,
+      imageLocation: req.body.imageLocation,
     });
-    return res.status(CREATED).json({ created: true });
+    return res.status(CREATED).json({
+      status: CREATED,
+      resource: post,
+    });
   } catch (error) {
     return res.status(INTERNAL_SERVER_ERROR).json({
       status: INTERNAL_SERVER_ERROR,

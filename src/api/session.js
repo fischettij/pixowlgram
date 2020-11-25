@@ -22,7 +22,7 @@ const create = async (req, res) => {
   if (!errors.isEmpty()) {
     return res.status(BAD_REQUEST).json({
       status: BAD_REQUEST,
-      message: 'Token not created',
+      message: 'Validation Errors',
       errors: errors.array().map((e) => e.msg),
     });
   }
