@@ -47,3 +47,4 @@ npm run start
 - Save images in storage service
 - Login with third party
 - CI: Github Actions + DigitalOcean
+- Test upload path
