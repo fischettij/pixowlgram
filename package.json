@@ -44,6 +44,7 @@
     "http-status-codes": "^2.1.4",
     "jsonwebtoken": "^8.5.1",
     "morgan": "^1.10.0",
+    "multer": "^1.4.2",
     "sequelize": "^6.3.5",
     "sqlite3": "^5.0.0"
   },

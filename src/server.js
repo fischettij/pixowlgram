@@ -12,8 +12,7 @@ if (process.env.NODE_ENV === 'development') app.use(morgan('dev'));
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json({ type: 'application/json' }));
-
-app.get('/', (req, res) => res.json('Hola Munro'));
+app.use('/images', express.static('uploads'));
 
 // Routes
 app.use('/', require('./router'));
