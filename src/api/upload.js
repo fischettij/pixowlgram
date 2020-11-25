@@ -8,15 +8,14 @@ const post = (req, res) => {
       success: false,
       resutl: 'No file received',
     });
-  } else {
-    return res.status(CREATED).json({
-      file: req.file.filename,
-      success: true,
-      _links: {
-        href: `${URL}/images/${req.file.filename}`,
-      },
-    });
   }
+  return res.status(CREATED).json({
+    file: req.file.filename,
+    success: true,
+    _links: {
+      href: `${URL}/images/${req.file.filename}`,
+    },
+  });
 };
 
 module.exports = { post };

@@ -15,7 +15,7 @@ router.post('/posts', [token.verify, posts.formValidations], posts.create);
 router.post(
   '/upload',
   [token.verify, storage.upload.single('postImage')],
-  upload.post
+  upload.post,
 );
 
 module.exports = router;

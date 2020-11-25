@@ -7,18 +7,17 @@ const storage = multer.diskStorage({
   },
   filename: (req, file, cb) => {
     User.findOne({ where: { email: req.jwt.email } }).then((user) => {
-      const newFilename =
-        user.id.toString() + new Date().toISOString() + file.originalname;
+      const newFilename =        user.id.toString() + new Date().toISOString() + file.originalname;
       cb(null, newFilename);
     });
   },
 });
 
-const fileFilter = function (req, file, cb) {
+const fileFilter = (req, file, cb) => {
   if (
-    file.mimetype === 'image/jpeg' ||
-    file.mimetype === 'image/png' ||
-    file.mimetype === 'image/jpg'
+    file.mimetype === 'image/jpeg'
+    || file.mimetype === 'image/png'
+    || file.mimetype === 'image/jpg'
   ) {
     cb(null, true);
   } else {
