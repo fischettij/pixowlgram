@@ -12,6 +12,7 @@ const router = express.Router();
 router.post('/users', users.formValidations, users.create);
 router.post('/session', session.formValidations, session.create);
 router.post('/posts', [token.verify, posts.formValidations], posts.create);
+router.get('/posts', token.verify, posts.getAll);
 router.post(
   '/upload',
   [token.verify, storage.upload.single('postImage')],

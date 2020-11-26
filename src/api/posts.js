@@ -1,9 +1,11 @@
 const { check, validationResult } = require('express-validator');
 const {
+  OK,
   BAD_REQUEST,
   CREATED,
   INTERNAL_SERVER_ERROR,
 } = require('http-status-codes').StatusCodes;
+const paginate = require('express-paginate');
 const { User, Post } = require('../../db/models');
 
 const formValidations = [
@@ -40,4 +42,19 @@ const create = async (req, res) => {
   }
 };
 
-module.exports = { formValidations, create };
+const getAll = (req, res, next) => {
+  Post.findAndCountAll({ limit: req.query.limit, offset: req.skip })
+    .then((results) => {
+      const itemCount = results.count;
+      const pageCount = Math.ceil(results.count / req.query.limit);
+      res.status(OK).json({
+        posts: results.rows,
+        pageCount,
+        itemCount,
+        pages: paginate.getArrayPages(req)(3, pageCount, req.query.page),
+      });
+    })
+    .catch((err) => next(err));
+};
+
+module.exports = { formValidations, create, getAll };
