@@ -10,6 +10,7 @@ services:
       SERVER_PORT: 9001
       ACCESS_TOKEN_SECRET: H1mWcj3Uyj3eG9ez
       DATABASE_URL: 'postgres://pixowlgram:f263P9IrZRKqwxnR@db:5432/pixowlgram'
+      SERVER_DOMAIN: 'http://localhost'
     volumes:
       - ./logs/:/opt/app/logs/
     depends_on:
