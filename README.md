@@ -20,6 +20,8 @@ cd pixowlgram
 docker-compose up
 ```
 
+_configure .env or keep docker-compose default values to easy startup_
+
 ## Install & Run
 
 ### Download
@@ -46,6 +48,11 @@ npx sequelize db:migrate
 ```sh
 npm run start
 ```
+
+## Docs
+
+- [API Changelog](docs/API-Changelog.md)
+- [Technologies](docs/Technologies.md)
 
 ### TODO
 
