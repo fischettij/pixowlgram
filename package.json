@@ -23,6 +23,7 @@
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
+    "db:migrate": "sequelize db:migrate",
     "test": "jest",
     "test:ci": "jest --verbose --coverage",
     "lint": "eslint --ext .js ./ src/",
