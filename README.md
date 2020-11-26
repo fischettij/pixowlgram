@@ -12,6 +12,14 @@ npx sequelize db:migrate
 npm run start
 ```
 
+or
+
+```sh
+git clone https://github.com/fischettij/pixowlgram.git
+cd pixowlgram
+docker-compose up
+```
+
 ## Install & Run
 
 ### Download
@@ -41,10 +49,10 @@ npm run start
 
 ### TODO
 
-- Build docker image
 - Token expires
 - Refresh token
 - Save images in storage service
 - Login with third party
-- CI: Github Actions + DigitalOcean
+- CD: Github Actions + DigitalOcean
 - Test upload path
+- Path for likes
